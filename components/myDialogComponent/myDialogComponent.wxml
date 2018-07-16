@@ -1,0 +1,18 @@
+<view hidden="{{dialogHidden}}">
+  <view class="layer-pop" bindtap="cancleBtn" />
+
+    <view class="layer-content">
+      <view class="layer-content-header">提示</view>
+
+      <view class="layer-content-body">
+        <text class="title-msg">{{titleMsg}}</text>
+        <input class="input-base" hidden="{{inputHidden}}" bindinput="bindKeyInput" value="{{inputValue}}" naxlength="10"  placeholder="{{inputPlaceHealder}}" />
+      </view>
+
+      <view class="layer-button">
+        <view class="btn" bindtap="cancleBtn" hidden="{{cancleBtn}}">取消</view>
+        <view class="btn-sure" bindtap="determineBtn">确定</view>
+      </view>
+    </view>
+  
+</view>

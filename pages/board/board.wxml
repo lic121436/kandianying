@@ -1,0 +1,28 @@
+<!--pages/board/board.wxml-->
+<view class="container">
+  <view class="slide">
+    <swiper indicator-dots="true" autoplay="true" interval="3000" duration="1000" circular="true">
+      <block wx:for="{{imgUrls}}">
+        <swiper-item>
+          <image src="{{item}}" class="slide-image" mode="aspectFill" />
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>  
+
+  <view class="board">
+    <view class='header'>
+      <text class='h1'>豆瓣电影榜单集合</text>
+      <text class='h4'>最新、最IN的电影收集</text>
+    </view>
+
+    <block wx:for="{{boardlist}}">
+    <navigator url='/pages/list/list?type={{item.type}}&title={{item.title}}' hover-class='none'>
+      <view class='board-item'>
+        <text>{{item.title}}</text>
+        <image src='../../images/arrowright.png' mode='aspectFill'></image>
+      </view>
+    </navigator>
+    </block>
+  </view>
+</view>

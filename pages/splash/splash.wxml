@@ -1,0 +1,13 @@
+<!--pages/splash/splash.wxml-->
+<view class='slide'>
+  <swiper indicator-dots="true" autoplay="true" interval="3000" duration="500" indicator-color="#fff" indicator-active-color="#02b1f7">
+    <block wx:for="{{imgUrls}}">
+      <swiper-item>
+        <image src="{{item}}" class="slide-image"  mode="aspectFill" />
+        <button wx:if="{{index === imgUrls.length - 1}}" class="btn" bindtap="jumpIndex"> 立即体验 </button>
+      </swiper-item>
+    </block>
+  </swiper>
+
+  <view class='count-down'>{{count}}秒</view>
+</view>

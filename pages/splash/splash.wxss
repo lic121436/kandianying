@@ -1,0 +1,47 @@
+/* pages/splash/splash.wxss */
+.slide{
+  position: relative;
+}
+
+.slide swiper{
+  width: 100%;
+  height: 100vh;
+}
+
+.slide .slide-image{
+  width: 100%;
+  height: 100%;
+}
+
+.btn{
+  position: fixed;
+  left: 50%;
+  bottom: 80px;
+  width: 240rpx;
+  height: 80rpx;
+  margin-left: -120rpx;
+  line-height: 80rpx;
+  color: #fff;
+  border: 1px solid #02b1f7;
+  background-color: rgba(2, 177, 247, 0.3);
+  cursor: pointer;
+  transition: all .3s;
+}
+
+.btn:hover{
+  background-color: rgba(2, 177, 247, 0.1);
+}
+
+.count-down{
+  position: absolute;
+  top: 30rpx;
+  right: 30rpx;
+  height: 30rpx;
+  padding: 10rpx 20rpx;
+  line-height: 30rpx;
+  color: #fff;
+  font-size: 24rpx;
+  background-color: rgba(0, 0, 0, .5);
+  border-radius: 30rpx;
+  border: 1rpx solid rgba(255, 255, 255, .5);
+}

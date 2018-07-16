@@ -1,0 +1,98 @@
+/**app.wxss**/
+@import "/iconfont/iconfont.wxss";
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+.mt20 {
+  margin-top: 20rpx;
+}
+
+.mt30 {
+  margin-top: 30rpx;
+}
+
+.hidden, .dn {
+  display: none !important;
+}
+
+.container {
+  display: flex;
+  flex-direction: colum;
+  flex-wrap: wrap;
+}
+
+/* 没有数据 */
+
+.not-data {
+  width: 100%;
+  padding: 30rpx;
+  line-height: 32rpx;
+  text-align: center;
+  font-size: 32rpx;
+  color: #313131;
+  box-sizing: border-box;
+}
+
+/* 设置按钮 */
+
+button, .btn-success, .btn-danger, .btn-warning, .btn-info {
+  width: 100%;
+  height: 70rpx;
+  padding: 0;
+  line-height: 70rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #fff;
+  border-radius: 0;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+button::after, .btn-success::after, .btn-danger::after, .btn-warning::after,
+.btn-info::after {
+  border: none;
+}
+
+button.radius, .btn-success.radius, .btn-danger.radius, .btn-warning.radius,
+.btn-info.radius {
+  border-radius: 12rpx;
+}
+
+.btn-success {
+  background-color: #00a232;
+}
+
+.btn-danger {
+  background-color: #ff5000;
+}
+
+.btn-warning {
+  background-color: #ffc107;
+}
+
+.btn-info {
+  color: #313131;
+  background-color: #fff;
+  border: 1px solid #e6e6e6;
+}
+
+/* 返回顶部 */
+.go-top {
+  z-index: 10;
+  position: fixed;
+  left: 60rpx;
+  bottom: 80rpx;
+  width: 80rpx;
+  height: 80rpx;
+  line-height: 60rpx;
+  text-align: center;
+  font-size: 60rpx;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 10rpx;
+  cursor: pointer;
+}

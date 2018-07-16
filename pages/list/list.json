@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "go-top": "/components/gotop/gotop"
+  }
+}

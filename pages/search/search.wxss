@@ -1,0 +1,46 @@
+/* pages/search/search.wxss */
+@import "/common/list/list.wxss";
+
+.panel { width: 100%; padding: 0 20rpx; box-sizing: border-box; }
+
+.search-wrapper { display: flex; justify-content: flex-start; align-content: center; }
+
+.search-wrapper .search-content { position: relative; flex: 1; display: flex; justify-content: flex-start; align-content: center; height: 70rpx; padding: 0 60rpx 0 30rpx; background-color: #e9e9e9; border-radius: 6rpx; box-sizing: border-box; }
+
+.search-wrapper .search-content .icon { width: 46rpx; height: 70rpx; }
+
+.search-wrapper .search-content .icon .iconfont { line-height: 70rpx; font-size: 40rpx; color: #acacac; }
+
+.search-wrapper .search-content .search-input { flex: 1; height: 70rpx; line-height: 70rpx; }
+
+.search-wrapper .search-content .search-input input { width: 100%; height: 70rpx; line-height: 70rpx; font-size: 32rpx; }
+
+.search-wrapper .search-content .clear-input { position: absolute; right: 16rpx; width: 36rpx; height: 70rpx; line-height: 70rpx; }
+
+.search-wrapper .search-content .clear-input .iconfont { line-height: 100%; font-size: 36rpx; color: #b2b2b2; }
+
+.search-wrapper .search-btn { width: 100rpx; height: 70rpx; margin-left: 10rpx; }
+
+.search-tip { font-size: 28rpx; color: #000; }
+
+.search-tip .text { color: #ff5000; }
+
+.search-title { display: flex; justify-content: space-between; align-items: center; width: 100%; font-size: 28rpx; color: #000; }
+
+.search-title .clear-history { color: #919191; cursor: pointer; }
+
+.search-title .clear-history .iconfont { display: inline-block; margin-right: 10rpx; line-height: 28rpx; color: #919191; font-size: 28rpx; vertical-align: middle; }
+
+.search-history { margin-left: -10rpx; margin-right: -10rpx; }
+
+.search-history .btn-history { display: inline-block; height: 70rpx; padding: 0 40rpx; margin: 20rpx 10rpx 0 10rpx; line-height: 70rpx; font-size: 32rpx; color: #fff; background-color: #dfdfdf; border-radius: 6rpx; }
+
+.search-tip-wrapper { width: 100%; }
+
+.search-tip-wrapper .list-title { padding: 0 20rpx 24rpx 20rpx; font-size: 32rpx; color: #000; border-bottom: 1rpx solid #dedede; }
+
+.search-tip-wrapper .list-item { padding: 0 20rpx; margin-top: 20rpx; line-height: 28rpx; font-size: 28rpx; color: #959595; }
+
+.list-wrapper { width: 100%; }
+
+

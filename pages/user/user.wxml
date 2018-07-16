@@ -1,0 +1,10 @@
+<!--pages/item/item.wxml-->
+<view  class="container">
+  <view class="panel">
+    <view class="content">
+      <view class="img-name">白开水</view>
+      <image src="/images/ewm.jpg" ></image>
+      <view class="img-follow">识别二维码加关注</view>
+    </view>
+  </view>
+</view>

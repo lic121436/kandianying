@@ -1,0 +1,48 @@
+/* pages/item/item.wxss */
+
+.panel {
+  width: 100%;
+  height: 100%;
+}
+
+.panel .content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding: 0 30rpx;
+  transform: translate(-50%, -50%);
+  color: #141414;
+}
+
+.panel .content .img-name {
+  height: 50rpx;
+  margin-bottom: 20rpx;
+  line-height: 50rpx;
+  text-align: center;
+  font-size: 40rpx;
+  font-weight: bold;
+  letter-spacing: 10rpx;
+}
+
+.panel .content image {
+  width: 690rpx;
+  height: 690rpx;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.panel .content .img-content {
+  line-height: 50rpx;
+  font-size: 34rpx;
+}
+
+.panel .content .img-follow {
+  width: 690rpx;
+  height: 90rpx;
+  margin: 20rpx auto;
+  line-height: 90rpx;
+  text-align: center;
+  font-size: 40rpx;
+  letter-spacing: 10rpx;
+  border: 1px solid #abcdef;
+  border-radius: 10rpx;
+}

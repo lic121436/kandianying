@@ -1,0 +1,36 @@
+/* pages/layer/layer.wxss */
+.panel { width: 100%; padding: 0 20rpx; box-sizing: border-box; }
+
+.list-wrapper .list-item { margin-top: 40rpx; }
+
+.layer-pop { z-index: 11; position: absolute; top: 50%; left: 50%; width: 526rpx; transform: translate(-50%, -50%); }
+
+.layer-pop .layer-content, .layer-pop .layer-content-only { padding: 52rpx 30rpx 40rpx 30rpx; text-align: center; background-color: #fff; border-radius: 6rpx 0 0 6rpx; }
+
+.layer-pop .layer-content .layer-content-header, .layer-pop .layer-content-only .layer-content-header { height: 60rpx; line-height: 60rpx; font-size: 32rpx; color: #000; overflow: hidden; }
+
+.layer-pop .layer-content .layer-content-body, .layer-pop .layer-content-only .layer-content-body { line-height: 60rpx; font-size: 28rpx; color: #7e7e7e; }
+
+.layer-pop .layer-content .layer-content-body .jifen, .layer-pop .layer-content-only .layer-content-body .jifen { color: #f87408; }
+
+.layer-pop .layer-content-only { border-radius: 6rpx; }
+
+.layer-pop .layer-button { display: flex; justify-content: flex-start; height: 90rpx; line-height: 90rpx; box-sizing: border-box; background-color: #fff; border-radius: 0 0 6px 6px; border-top: 1px solid #ddd; }
+
+.layer-pop .layer-button button { flex: 1; height: 89rpx; padding: 0; line-height: 89rpx; text-align: center; font-size: 28rpx; background-color: transparent; border-left: 1px solid #eee; box-sizing: border-box; overflow: hidden; }
+
+.layer-pop .layer-button button:first-child { border-left: none; }
+
+.layer-pop .layer-button button::after { position: absolute; border: none; }
+
+.layer-pop .layer-button button.btn-submit { color: #f87408; }
+
+.layer-pop .layer-button button.btn-blue { color: #4a8fff; }
+
+.layer-pop .layer-button button.btn-cancel { color: #9a999e; }
+
+.layer-pop .layer-button button.btn-young { color: #25b1cc; }
+
+.layer-pop .layer-close { width: 110rpx; height: 110rpx; margin: 40rpx auto 0 auto; line-height: 90rpx; text-align: center; font-size: 60rpx; color: #fff; border: 4rpx solid #fff; border-radius: 50%; box-sizing: border-box; }
+
+.layer-mask { z-index: 10; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.5); }

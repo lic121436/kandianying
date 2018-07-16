@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "弹窗",
+  "usingComponents": {
+    "my-component-dialog": "/components/myDialogComponent/myDialogComponent"
+  }
+}

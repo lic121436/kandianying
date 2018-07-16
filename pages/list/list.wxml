@@ -1,0 +1,37 @@
+<!--pages/list/list.wxml-->
+<import src="/common/list/list.wxml" />
+
+<view class="panel">
+  <view class="h4">{{listTitle}}</view>
+  <view class="content">
+    <view class="not-data" wx:if="{{flag}}">没有加载到数据</view>
+    <block wx:for="{{list}}">
+      <template is="movieList" data="{{...item}}" />
+    </block>
+    <!-- <block wx:for="{{list}}">
+      <view class="item">
+        <image src="{{item.images.small}}" mode="aspectFit"></image>
+        <view class="item-content">
+          <view class="title">{{item.title}}</view>
+          <view class="sub-title">{{item.title}}（{{item.year}}）</view>
+          <view class="info">导演：
+            <block wx:for="{{item.directors}}" wx:for-item="directors">
+              <text class="text">{{directors.name}}</text>
+            </block>
+          </view>
+          <view class="info">主演：
+            <block wx:for="{{item.casts}}" wx:for-item="casts">
+              <text class="text">{{casts.name}}</text>
+            </block>
+          </view>
+        </view>
+        <view class="code">{{item.rating.average}}</view>
+      </view>
+    </block> -->
+  </view>
+</view>
+
+<!-- 调用返回顶部组件  -->
+<go-top 
+  bind:onPageScroll="onPageScroll" 
+/>
