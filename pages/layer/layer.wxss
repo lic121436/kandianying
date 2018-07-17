@@ -1,11 +1,10 @@
-/* pages/layer/layer.wxss */
 .panel { width: 100%; padding: 0 20rpx; box-sizing: border-box; }
 
 .list-wrapper .list-item { margin-top: 40rpx; }
 
 .layer-pop { z-index: 11; position: absolute; top: 50%; left: 50%; width: 526rpx; transform: translate(-50%, -50%); }
 
-.layer-pop .layer-content, .layer-pop .layer-content-only { padding: 52rpx 30rpx 40rpx 30rpx; text-align: center; background-color: #fff; border-radius: 6rpx 0 0 6rpx; }
+.layer-pop .layer-content, .layer-pop .layer-content-only { padding: 52rpx 30rpx 40rpx 30rpx; text-align: center; background-color: #fff; border-radius: 6px 6px 0 0; }
 
 .layer-pop .layer-content .layer-content-header, .layer-pop .layer-content-only .layer-content-header { height: 60rpx; line-height: 60rpx; font-size: 32rpx; color: #000; overflow: hidden; }
 
@@ -13,11 +12,11 @@
 
 .layer-pop .layer-content .layer-content-body .jifen, .layer-pop .layer-content-only .layer-content-body .jifen { color: #f87408; }
 
-.layer-pop .layer-content-only { border-radius: 6rpx; }
+.layer-pop .layer-content-only { border-radius: 6px; }
 
-.layer-pop .layer-button { display: flex; justify-content: flex-start; height: 90rpx; line-height: 90rpx; box-sizing: border-box; background-color: #fff; border-radius: 0 0 6px 6px; border-top: 1px solid #ddd; }
+.layer-pop .layer-button { display: flex; justify-content: flex-start; height: 90rpx; line-height: 90rpx; box-sizing: border-box; background-color: #fff; border-radius: 0 0 6px 6px; border-top: 1px solid #7e7e7e; }
 
-.layer-pop .layer-button button { flex: 1; height: 89rpx; padding: 0; line-height: 89rpx; text-align: center; font-size: 28rpx; background-color: transparent; border-left: 1px solid #eee; box-sizing: border-box; overflow: hidden; }
+.layer-pop .layer-button button { flex: 1; height: 89rpx; padding: 0; line-height: 89rpx; text-align: center; font-size: 28rpx; background-color: transparent; border-left: 1px solid #dbdbdb; box-sizing: border-box; overflow: hidden; }
 
 .layer-pop .layer-button button:first-child { border-left: none; }
 
