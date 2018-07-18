@@ -14,7 +14,7 @@
 
 .layer-pop .layer-content-only { border-radius: 6px; }
 
-.layer-pop .layer-button { display: flex; justify-content: flex-start; height: 90rpx; line-height: 90rpx; box-sizing: border-box; background-color: #fff; border-radius: 0 0 6px 6px; border-top: 1px solid #7e7e7e; }
+.layer-pop .layer-button { display: flex; justify-content: flex-start; height: 90rpx; line-height: 90rpx; box-sizing: border-box; background-color: #fff; border-radius: 0 0 6px 6px; border-top: 1px solid #ddd; }
 
 .layer-pop .layer-button button { flex: 1; height: 89rpx; padding: 0; line-height: 89rpx; text-align: center; font-size: 28rpx; background-color: transparent; border-left: 1px solid #dbdbdb; box-sizing: border-box; overflow: hidden; }
 
