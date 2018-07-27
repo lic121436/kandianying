@@ -33,3 +33,5 @@
 .layer-pop .layer-close { width: 110rpx; height: 110rpx; margin: 40rpx auto 0 auto; line-height: 90rpx; text-align: center; font-size: 60rpx; color: #fff; border: 4rpx solid #fff; border-radius: 50%; box-sizing: border-box; }
 
 .layer-mask { z-index: 10; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.5); }
+
+

@@ -3,14 +3,17 @@ Component({
    * 组件的属性列表
    */
   properties: {
-  
+    goTopFlag: {
+      type: Boolean,
+      value: false
+    }
   },
 
   /**
    * 组件的初始数据
    */
   data: {
-    goTopFlag: false
+  
   },
 
   /**
@@ -21,15 +24,15 @@ Component({
       let goTopFlag = this.data.goTopFlag;
       this.triggerEvent('onPageScroll', goTopFlag);
       let scrollTop = e.scrollTop;
-      let that = this;
+
       wx.getSystemInfo({
-        success: function (res) {
+        success: (res) => {
           if (scrollTop > res.windowWidth) {
-            that.setData({
+            this.setData({
               goTopFlag: true
             });
           } else {
-            that.setData({
+            this.setData({
               goTopFlag: false
             });
           }

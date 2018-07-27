@@ -24,6 +24,7 @@ Page({
   onLoad: function(options) {
     // 在当前页面显示导航条加载动画
     wx.showNavigationBarLoading();
+
     setTimeout(() => {
       // 隐藏导航条加载动画
       wx.hideNavigationBarLoading();
@@ -31,6 +32,7 @@ Page({
 
     let type = options.type;
     let listTitle = options.title;
+
     this.setData({
       listTitle,
       movieType: type
@@ -83,6 +85,12 @@ Page({
             });
           }         
 
+        } else {
+          wx.stopPullDownRefresh();
+          wx.showToast({
+            title: '已经全部加载',
+            duration: 2000
+          })
         }
         // 隐藏导航条加载动画
         wx.hideNavigationBarLoading();

@@ -90,7 +90,7 @@ Page({
     this.setData({
       inputFlag: false,
       searchText: "",
-      searchFlag: false      
+      searchFlag: false
     })
   },
 
@@ -198,7 +198,10 @@ Page({
           this.setData({
             searchFlag: false,
             noSearchFalse: true
-          })
+          });
+
+          wx.stopPullDownRefresh();
+
         } else if (res.subjects.length > 0) {
           this.setData({
             list: td.list.concat(res.subjects),
