@@ -1,6 +1,6 @@
 <template name="movieList">
   <view class="movie-item" catchtap="onMovieTap" data-movieId="{{id}}">
-    <image src="{{images.small}}" mode="aspectFit"></image>
+    <image src="{{images.small}}" mode="aspectFit" lazy-load="{{true}}"></image>
     <view class="item-content">
       <view class="title">{{title}}</view>
       <view class="sub-title">{{title}}（{{year}}）</view>
