@@ -67,7 +67,7 @@ Page({
           })
         } else if (res.subjects.length > 0) {
           // 判断是否为北美票房是的话将数据进行处理
-          if (type === 'us_box') {
+          if (type === 'us_box' || type === 'weekly') {
             let newArr = [];
             res.subjects.forEach(item => {
               newArr.push(item.subject);
