@@ -1,4 +1,5 @@
-const URI = 'https://bks.licbks.com/v2/movie/'
+// const URI = 'https://bks.licbks.com/v2/movie/'
+const URI = 'https://douban.uieee.com/v2/movie/'
 const fetch = require('./fetch')
 
 /**
