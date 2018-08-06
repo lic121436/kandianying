@@ -98,6 +98,7 @@ App({
   },
   globalData: {
     userInfo: null,
-    doubanBase: "https://bks.licbks.com"
+    // doubanBase: "https://bks.licbks.com"
+    doubanBase: "https://douban.uieee.com"
   }
 })
