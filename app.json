@@ -6,7 +6,8 @@
     "pages/layer/layer",
     "pages/movie-detail/movie-detail",
     "pages/user/user",
-    "pages/list/list"
+    "pages/list/list",
+    "pages/accredit/accredit"
   ],
   "window":{
     "backgroundTextStyle":"light",

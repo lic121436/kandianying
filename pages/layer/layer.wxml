@@ -6,32 +6,37 @@
       <view class="list-item">
         <button class="btn-success radius" bindtap="layerOpen1">弹窗1</button>
       </view>
-    </view>
+  
 
-    <view class="list-wrapper">
+  
       <view class="list-item">
         <button class="btn-danger radius" bindtap='showCompomentDialog'>自定义组件</button>
       </view>
-    </view>
+ 
 
 
-     <view class="list-wrapper">
+    
       <view class="list-item">
         <button plain="true" type="default" bindtap="layerOpen2">弹窗2</button>
       </view>
-    </view>
 
 
-     <view class="list-wrapper">
+
+     
       <view class="list-item">
         <button  type="primary" bindtap="layerOpen3">弹窗3</button>
       </view>
-    </view>
+ 
 
-     <view class="list-wrapper">
+     
       <view class="list-item">
         <button  type="warn" bindtap="layerOpen4">弹窗4</button>
       </view>
+
+      <navigator class="list-item" url="/pages/accredit/accredit">
+        <button class="btn-success radius">授权页面</button>
+      </navigator>
+   
     </view>
 
   </view>

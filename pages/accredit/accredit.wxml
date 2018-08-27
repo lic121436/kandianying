@@ -1,0 +1,29 @@
+<!--pages/accredit/accredit.wxml-->
+<view class="container">
+  <view class="panel">
+    <view class="header">
+      <view class="logo">
+        <image src="/images/ewm.jpg"></image>
+      </view>
+      <view class="title">电影查看</view>
+    </view>
+
+    <view class="text-wrapper">
+      <view class="title">该程序获得以下授权</view>
+      <view class="text">获得您公开信息（昵称和头像）</view>
+    </view>
+
+    <view class="button-wrapper">
+      <view class="button-list">
+        <navigator class="btn-info radius" open-type="switchTab" url="/pages/board/board">返回首页</navigator>
+      </view>
+      <view class="button-list">
+        <button class="btn-warning radius" open-type="getUserInfo">确定授权</button>
+      </view>
+    </view>
+
+  <view class="mt50">
+    <button class="btn-success radius" bindtap="openSetting">跳转设置页面授权</button>
+  </view>
+  </view>
+</view>

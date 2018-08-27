@@ -73,6 +73,11 @@ App({
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        // if (res.code) {
+        //   //TODO
+        // } else {
+        //   console.log('获取用户登录态失败！' + res.errMsg)
+        // }
       }
     })
     // 获取用户信息

@@ -15,6 +15,10 @@
   margin-top: 30rpx;
 }
 
+.mt50 {
+  margin-top: 30rpx;
+}
+
 .hidden, .dn {
   display: none !important;
 }

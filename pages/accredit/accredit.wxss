@@ -1,0 +1,24 @@
+/* pages/accredit/accredit.wxss */
+.panel { width: 100%; padding: 0 20rpx; box-sizing: border-box; }
+
+.header { padding-bottom: 50rpx; text-align: center; border-bottom: #ddd 1px solid; }
+
+.header .logo { width: 100%; margin: 80rpx 0 50rpx; text-align: center; }
+
+.header .logo image { width: 114rpx; height: 114rpx; border-radius: 50%; }
+
+.header .title { width: 100%; line-height: 28rpx; font-size: 28rpx; color: #2c2c2c; }
+
+.text-wrapper { margin-top: 50rpx; }
+
+.text-wrapper .title { line-height: 28rpx; font-size: 28rpx; color: #2c2c2c; }
+
+.text-wrapper .text { margin-top: 40rpx; line-height: 24rpx; font-size: 24rpx; color: #d0d0d0; }
+
+.button-wrapper { display: flex; justify-content: space-around; margin-top: 75rpx; }
+
+.button-wrapper .button-list { flex: 1; }
+
+.button-wrapper .button-list:not(:first-child) { margin-left: 16rpx; }
+
+
