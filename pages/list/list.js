@@ -51,6 +51,8 @@ Page({
 
   },
 
+  
+
   // 获取数据
   getMovieListData(url, settedKey, categoryTitle) {
     return fetch(url, settedKey)
@@ -83,7 +85,7 @@ Page({
               page: this.data.page + 1,
               flag: false
             });
-          }         
+          }
 
         } else {
           wx.stopPullDownRefresh();
@@ -133,7 +135,7 @@ Page({
   },
 
   // 调用自定义组件的函数
-  onPageScroll: function (e) {
+  onPageScroll: function(e) {
     this.setData({
       inputValue: true
     })
@@ -142,5 +144,24 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {}
+  onShareAppMessage: function() {},
+
+  onPageScroll: function (e) { // 获取滚动条当前位置
+    console.log(e);
+    let scrollTop = e.scrollTop;
+    let that = this;
+    wx.getSystemInfo({
+      success: function (res) {
+        if (scrollTop > res.windowHeight - 160) {
+          that.setData({
+            goTopFlag: true
+          });
+        } else {
+          that.setData({
+            goTopFlag: false
+          });
+        }
+      }
+    });
+  }
 });

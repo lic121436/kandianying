@@ -249,12 +249,11 @@ Page({
   },
 
   onPageScroll: function(e) { // 获取滚动条当前位置
-
     let scrollTop = e.scrollTop;
     let that = this;
     wx.getSystemInfo({
       success: function(res) {
-        if (scrollTop > res.windowWidth) {
+        if (scrollTop > res.windowHeight - 160) {
           that.setData({
             goTopFlag: true
           });
@@ -268,18 +267,18 @@ Page({
   },
 
 
-  goTop: function(e) { // 一键回到顶部
-    if (wx.pageScrollTo) {
-      wx.pageScrollTo({
-        scrollTop: 0
-      })
-    } else {
-      wx.showModal({
-        title: '提示',
-        content: '当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试。'
-      })
-    }
-  },
+  // goTop: function(e) { // 一键回到顶部
+  //   if (wx.pageScrollTo) {
+  //     wx.pageScrollTo({
+  //       scrollTop: 0
+  //     })
+  //   } else {
+  //     wx.showModal({
+  //       title: '提示',
+  //       content: '当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试。'
+  //     })
+  //   }
+  // },
 
   /**
    * 跳转到详情页面

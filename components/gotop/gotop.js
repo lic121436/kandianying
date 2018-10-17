@@ -4,8 +4,7 @@ Component({
    */
   properties: {
     goTopFlag: {
-      type: Boolean,
-      value: false
+      type: Boolean
     }
   },
 
@@ -13,33 +12,33 @@ Component({
    * 组件的初始数据
    */
   data: {
-  
+    // goTopFlag: false
   },
 
   /**
    * 组件的方法列表
    */
   methods: {
-    onPageScroll: function (e) { // 获取滚动条当前位置
-      let goTopFlag = this.data.goTopFlag;
-      this.triggerEvent('onPageScroll', goTopFlag);
-      let scrollTop = e.scrollTop;
-
-      wx.getSystemInfo({
-        success: (res) => {
-          if (scrollTop > res.windowWidth) {
-            this.setData({
-              goTopFlag: true
-            });
-          } else {
-            this.setData({
-              goTopFlag: false
-            });
-          }
-        }
-      });
-      console.log(this.data.goTopFlag);
-    },
+    // onPageScroll: function (e) { // 获取滚动条当前位置
+    //   // let goTopFlag = this.data.goTopFlag;
+    //   // this.triggerEvent('onPageScroll', goTopFlag);
+    //   let scrollTop = e.scrollTop;
+    //   console.log(e);
+    //   wx.getSystemInfo({
+    //     success: (res) => {
+    //       if (scrollTop > res.windowWidth) {
+    //         this.setData({
+    //           goTopFlag: true
+    //         });
+    //       } else {
+    //         this.setData({
+    //           goTopFlag: false
+    //         });
+    //       }
+    //     }
+    //   });
+    //   console.log(this.data.goTopFlag);
+    // },
 
     goTop: function (e) {  // 一键回到顶部
       if (wx.pageScrollTo) {

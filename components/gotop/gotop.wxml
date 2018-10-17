@@ -1,4 +1,4 @@
-<view class="go-top" bindtap='goTop' wx:if="{{goTopFlag}}">
+<view class="go-top" bind:tap='goTop'  wx:if="{{goTopFlag}}">
   <text class="iconfont icon-tubiao02"></text>
 </view>
 

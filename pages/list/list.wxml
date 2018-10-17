@@ -32,6 +32,5 @@
 </view>
 
 <!-- 调用返回顶部组件  -->
-<go-top 
-  bind:onPageScroll="onPageScroll" 
-/>
+<l-gotop goTopFlag="{{goTopFlag}}" />
+

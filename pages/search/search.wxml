@@ -64,6 +64,9 @@
 </view>
 
 
-<view class="go-top" bindtap='goTop' wx:if="{{goTopFlag}}">
+<!-- <view class="go-top" bindtap='goTop' wx:if="{{goTopFlag}}">
   <text class="iconfont icon-tubiao02"></text>
-</view>
+</view> -->
+
+<!-- 调用返回顶部组件  -->
+<l-gotop goTopFlag="{{goTopFlag}}" />
