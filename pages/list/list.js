@@ -1,7 +1,9 @@
 // pages/list/list.js
 const app = getApp();
-const fetch = require('../../utils/fetch.js');
-const douban = require('../../utils/douban.js');
+import {
+  FindModel
+} from "../../models/find.js";
+const findModel = new FindModel();
 
 Page({
   /**
@@ -11,11 +13,15 @@ Page({
     flag: false,
     listTitle: "",
     movieType: null,
-    dataUrl: 'https://bks.licbks.com/v2/movie/',
-    list: [],
-    page: 1,
 
-    inputValue: false
+    inputValue: false,
+    dataArray: [],
+    loading: false,
+    total: null,
+    noneResult: false,
+    hasMore: true,
+    limit: 20,
+
   },
 
   /**
@@ -42,73 +48,144 @@ Page({
       title: listTitle
     });
 
-
-
-    // 数据加载
-    this.loadData(type, this.data.page);
-
-
-
+    this.getMovesList(type);
   },
 
-  
+  getMovesList(type) {
+    // 数据加载
+    findModel.find(type)
+      .then(res => {
+        // console.log(res);
+        if (type == "us_box" || type == "weekly") {
+          this._setMore(this.setNewArray(res.subjects));
+          this._setTotal(this.setNewArray(res.subjects).length);
+        } else if (type == "new_movies") {
+          this._setMore(res.subjects);
+          this._setTotal(res.subjects.length);
+        } else {
+          this._setMore(res.subjects);
+          this._setTotal(res.total);
+        }
+      });
+  },
+
+  _setMore(dataArray) {
+    let tempArray = this.data.dataArray.concat(dataArray);
+    this.setData({
+      dataArray: tempArray
+    });
+  },
+
+  // _setMoreData(dataArray) {
+  //   const tempArray = this.data.dataArray.concat(dataArray);
+  //   if (tempArray.length) {
+  //     this.setData({
+  //       dataArray: tempArray
+  //     });
+  //   } else {
+  //     this.setData({
+  //       noneResult: true
+  //     });
+  //   }
+  // },
+  // _getCurrentStart() {
+  //   return Math.floor(this.data.dataArray.length / this.data.limit) + 1;
+  // },
+
+  // _hasMoreData(dataArray) {
+  //   let flag = dataArray != "" && dataArray.length < this.data.limit ? false : true;
+  //   this.setData({
+  //     hasMore: flag
+  //   });
+  // },
+
+  _hasMore() {
+    if (this.data.dataArray.length >= this.data.total) {
+      this.setData({
+        hasMore: false
+      });
+      return false;
+    } else {
+      this.setData({
+        hasMore: true
+      });
+      return true;
+    }
+  },
+
+  _setTotal(total) {
+    this.data.total = total;
+    if (total == 0) {
+      this.setData({
+        noneResult: true
+      });
+    }
+  },
+
+  _setCurrentStart() {
+    return this.data.dataArray.length;
+  },
+
+  _isLocked() {
+    return this.data.loading ? true : false;
+  },
+
+  _locked() {
+    this.setData({
+      loading: true
+    });
+  },
+
+  _unLocked() {
+    this.setData({
+      loading: false
+    });
+  },
+
+  _initialize() {
+    this.setData({
+      dataArray: [],
+      loading: false,
+      noneResult: false,
+      hasMore: true
+    });
+    this.data.total = null;
+  },
 
   // 获取数据
   getMovieListData(url, settedKey, categoryTitle) {
     return fetch(url, settedKey)
-
-
   },
 
-  loadData: function(type, page) {
-    douban.find(type, page)
-      .then(res => {
-        if (res.code) {
-          this.setData({
-            flag: true
-          })
-        } else if (res.subjects.length > 0) {
-          // 判断是否为北美票房是的话将数据进行处理
-          if (type === 'us_box' || type === 'weekly') {
-            let newArr = [];
-            res.subjects.forEach(item => {
-              newArr.push(item.subject);
-            });
-            this.setData({
-              list: this.data.list.concat(newArr),
-              page: this.data.page + 1,
-              flag: false
-            });
-          } else {
-            this.setData({
-              list: this.data.list.concat(res.subjects),
-              page: this.data.page + 1,
-              flag: false
-            });
-          }
+  loadData: function(type, start) {
+    // console.log(type);
+    if (this._isLocked()) {
+      return;
+    }
 
-        } else {
-          wx.stopPullDownRefresh();
-          wx.showToast({
-            title: '已经全部加载',
-            duration: 2000
-          })
-        }
-        // 隐藏导航条加载动画
-        wx.hideNavigationBarLoading();
-      });
+    if (this._hasMore()) {
+      this._locked();
+      findModel.find(type, start)
+        .then(res => {
+          this._setMore(res.subjects);
+          this._setTotal(res.total);
+          this._unLocked();
+        }, () => {
+          this._unLocked();
+        });
+    }
+
 
   },
 
   /**
-   * 跳转到详情页面
+   * 北美票房筛选
    */
-  onMovieTap(event) {
-    let movieId = event.currentTarget.dataset.movieid;
-    wx.navigateTo({
-      url: '/pages/movie-detail/movie-detail?id=' + movieId
-    })
+  setNewArray(oldArray) {
+    let newArray = oldArray.map(res => res.subject);
+    return newArray;
   },
+
 
 
 
@@ -124,13 +201,7 @@ Page({
    */
   onReachBottom: function() {
 
-    // 在当前页面显示导航条加载动画
-    wx.showNavigationBarLoading();
-    this.setData({
-      page: this.data.page + 1
-    });
-
-    this.loadData(this.data.movieType, this.data.page);
+    this.loadData(this.data.movieType, this._setCurrentStart());
 
   },
 
@@ -146,12 +217,12 @@ Page({
    */
   onShareAppMessage: function() {},
 
-  onPageScroll: function (e) { // 获取滚动条当前位置
-    console.log(e);
+  onPageScroll: function(e) { // 获取滚动条当前位置
+    // console.log(e);
     let scrollTop = e.scrollTop;
     let that = this;
     wx.getSystemInfo({
-      success: function (res) {
+      success: function(res) {
         if (scrollTop > res.windowHeight - 160) {
           that.setData({
             goTopFlag: true

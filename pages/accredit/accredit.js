@@ -6,7 +6,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    userImg: "/images/ewm.jpg",
+    userName: "电影查看",
+    loginFlag: false,
+    buttonText: "确定授权"
   },
 
   /**
@@ -27,11 +30,48 @@ Page({
     //   }
     // })
 
+    this.isLogin();
+  },
 
+  /**
+   * 进入页面时判断是否已经登录
+   */
+  isLogin() {
+    const td = this.data;
+    const userInfo = wx.getStorageSync("userInfo");
+    const userImg = userInfo ? userInfo.avatarUrl : td.userImg;
+    const userName = userInfo ? userInfo.nickName : td.userName;
+    const loginFlag = userInfo ? true : false;
+    const buttonText = userInfo ? "已模拟登陆" : td.buttonText;
+
+
+    this.setData({
+      userImg,
+      userName,
+      loginFlag,
+      buttonText
+    });
   },
 
 
- 
+  onGotUserInfo(e) {
+    // console.log(e);
+    if (e.detail.errMsg == "getUserInfo:ok") {
+      wx.login({
+        success: res => {
+          this.setData({
+            userImg: e.detail.userInfo.avatarUrl,
+            userName: e.detail.userInfo.nickName,
+            loginFlag: true,
+            buttonText: "已模拟登陆"
+          });
+          wx.setStorageSync("userInfo", e.detail.userInfo);
+          console.log(res);
+        }
+      })
+    }
+  },
+
 
 
 
@@ -42,7 +82,7 @@ Page({
       wx.openSetting({
         success: (res) => {
           //尝试再次登录
-          this.login()
+
         }
       })
     } else {

@@ -22,8 +22,8 @@ function fetchApi(type, params) {
  * @param  {String} search 搜索关键词
  * @return {Promise}       包含抓取任务的Promise
  */
-function find(type, page = 1, count = 20, search = '') {
-  const params = { start: (page - 1) * count, count: count }
+function find(type, start, count = 20, search = '') {
+  const params = { start, count: count }
   return fetchApi(type, search ? Object.assign(params, { q: search }) : params)
     .then(res => res.data)
 }

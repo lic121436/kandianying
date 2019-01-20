@@ -4,7 +4,7 @@
 
     <view class="list-wrapper">
       <view class="list-item">
-        <button class="btn-success radius" bindtap="layerOpen1">弹窗1</button>
+        <button class="btn-success radius" bindtap="layerOpen1" data-index="0">弹窗1</button>
       </view>
   
 
@@ -17,20 +17,20 @@
 
     
       <view class="list-item">
-        <button plain="true" type="default" bindtap="layerOpen2">弹窗2</button>
+        <button plain="true" type="default" bindtap="layerOpen2" data-index="1">弹窗2</button>
       </view>
 
 
 
      
       <view class="list-item">
-        <button  type="primary" bindtap="layerOpen3">弹窗3</button>
+        <button  type="primary" bindtap="layerOpen3" data-index="2">弹窗3</button>
       </view>
  
 
      
       <view class="list-item">
-        <button  type="warn" bindtap="layerOpen4">弹窗4</button>
+        <button  type="warn" bindtap="layerOpen4" data-index="3">弹窗4</button>
       </view>
 
       <navigator class="list-item" url="/pages/accredit/accredit">
@@ -44,21 +44,21 @@
 
 
 <!--  弹窗1  -->
-<view class="layer-pop" wx:if="{{layerFalg1}}">
+<view class="layer-pop" wx:if="{{layerObj[0]}}">
   <view class="layer-content">
     <view class="layer-content-header">温馨提示</view>
     <view class="layer-content-body">选择期间内查无发票记录</view>
   </view>
   <view class="layer-button">
-    <button class="btn-submit" bindtap="layerClose1">确定</button>
+    <button class="btn-submit" bindtap="layerClose1" data-index="0">确定</button>
   </view>
 </view>
 <!--  弹窗蒙板  -->
-<view class="layer-mask" wx:if="{{maskFlag1}}" bindtap="layerClose1"></view>
+<view class="layer-mask" wx:if="{{layerObj[0]}}" bindtap="layerClose1"></view>
 
 
 <!--  弹窗2  -->
-<view class="layer-pop" wx:if="{{layerFalg2}}">
+<view class="layer-pop" wx:if="{{layerObj[1]}}">
   <view class="layer-content-only">
     <view class="layer-content-header">签到成功</view>
     <view class="layer-content-body">
@@ -66,38 +66,38 @@
         <view class="jifen">10积分</view>
     </view>
   </view>
-  <view class="layer-close" bindtap="layerClose2">x</view>
+  <view class="layer-close" bindtap="layerClose2" data-index="1">x</view>
 </view>
 <!--  弹窗蒙板  -->
-<view class="layer-mask" wx:if="{{maskFlag2}}" bindtap="layerClose2"></view>
+<view class="layer-mask" wx:if="{{layerObj[1]}}" bindtap="layerClose2"></view>
 
 
 <!--  弹窗3  -->
-<view class="layer-pop" wx:if="{{layerFalg3}}">
+<view class="layer-pop" wx:if="{{layerObj[2]}}">
   <view class="layer-content">
     <view class="layer-content-body">需要微信授权才能正确使用哦</view>
   </view>
    <view class="layer-button">
-    <button class="btn-blue" bindtap="layerClose3">前往授权</button>
+    <button class="btn-blue" bindtap="layerClose3" data-index="2">前往授权</button>
   </view>
 </view>
 <!--  弹窗蒙板  -->
-<view class="layer-mask" wx:if="{{maskFlag3}}" bindtap="layerClose3"></view>
+<view class="layer-mask" wx:if="{{layerObj[2]}}" bindtap="layerClose3"></view>
 
 
 <!--  弹窗4  -->
-<view class="layer-pop" wx:if="{{layerFalg4}}">
+<view class="layer-pop" wx:if="{{layerObj[3]}}">
   <view class="layer-content">
     <view class="layer-content-header">安装</view>
     <view class="layer-content-body">阿里云客户端下载完成</view>
   </view>
    <view class="layer-button">
-    <button class="btn-cancel" bindtap="layerClose4">取消</button>
-    <button class="btn-young" bindtap="layerClose4">立即安装</button>
+    <button class="btn-cancel" bindtap="layerClose4" data-index="3">取消</button>
+    <button class="btn-young" bindtap="layerClose4" data-index="3">立即安装</button>
   </view>
 </view>
 <!--  弹窗蒙板  -->
-<view class="layer-mask" wx:if="{{maskFlag4}}" bindtap="layerClose4"></view>
+<view class="layer-mask" wx:if="{{layerObj[3]}}" bindtap="layerClose4"></view>
 
 
 
@@ -105,12 +105,13 @@
 
 
 <!-- 调用自定义组件  -->
-<my-component-dialog 
-  bind:determineevent="onMyEvent" 
-  bind:cancleevent="cancleBtn" 
-  dialog-hidden="{{isHidden}}" 
-  title-msg="{{titleMsg}}" 
-  input-hidden="{{inputHidden}}" 
-  cancle-btn="{{cancleBtn}}" 
-  input-place-halder="{{inputPlaceHolder}}" 
-/>
+<l-dialog 
+  dialogHidden="{{!isHidden}}" 
+  title="{{titleMsg}}"
+>
+<view slot="content">这是内容</view>
+
+  <button slot="button" class="btn-wran" bindtap="onMyEvent"  >取消</button>
+  <button slot="button" class="btn-suc"  bindtap="onMyEvent" >确认</button>
+
+</l-dialog>

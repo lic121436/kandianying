@@ -1,0 +1,5 @@
+<view class="no-data">
+  <view class="no-data-title">
+    <view class="no-data-tips">{{title}}</view>
+  </view>
+</view>

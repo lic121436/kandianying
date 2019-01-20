@@ -1,19 +1,23 @@
 // pages/search/search.js
-const douban = require("../../utils/douban.js");
+import { SearchModel } from "../../models/search.js";
+const searchModel = new SearchModel();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    dataArray: [],  // 搜索到内容
+    total: null,
+    noneResult: false, // 是否搜索到内容
+    loading: false,
+    hasMore: true,
+
     inputFlag: false, // 判断input里是否有内容
     searchText: "", // 搜索文本
     recentSearchLiist: [], // 最近搜索列表
     searchFlag: false, // 是否点击搜索
-    noSearchFalse: false, // 是否搜索到内容
-    list: [], // 搜索到内容
-    page: 1,
-    count: 20,
+
     goTopFlag: false
   },
 
@@ -97,10 +101,7 @@ Page({
   formSubmit(e) {
 
     //  搜索前清空列表
-    this.setData({
-      list: [],
-      page: 1
-    })
+    this.initialize();
 
     let td = this.data;
     let searchValue = e.detail.value.search;
@@ -180,8 +181,7 @@ Page({
       inputFlag: true,
       searchText: searchValue
     });
-    // 隐藏导航条加载动画
-    wx.hideNavigationBarLoading();
+
     // 搜索电影
     this.searchMovie(searchValue);
   },
@@ -191,28 +191,21 @@ Page({
    */
   searchMovie(searchValue) {
     let td = this.data;
+    searchModel.search(searchValue)
+    .then(res => {
+      // console.log(res);
+      this.setData({
+        searchFlag: true
+      });
+      this.setMoreData(res.subjects);
+      this.setTotal(res.total);
+    });
     // 搜索豆瓣电影
-    douban.find('search', td.page, td.count, searchValue)
-      .then(res => {
-        if (res.code || res.subjects.length === 0) {
-          this.setData({
-            searchFlag: false,
-            noSearchFalse: true
-          });
-
-          wx.stopPullDownRefresh();
-
-        } else if (res.subjects.length > 0) {
-          this.setData({
-            list: td.list.concat(res.subjects),
-            page: td.page + 1,
-            searchFlag: true,
-            noSearchFalse: false
-          });
-        }
-        // 隐藏导航条加载动画
-        wx.hideNavigationBarLoading();
-      })
+    // douban.find('search')
+    //   .then(res => {
+    //     this.setMoreData(res.books);
+    //     this.setTotal(res.total);
+    //   })
   },
 
 
@@ -229,6 +222,64 @@ Page({
     return newArr;
   },
 
+  setMoreData(dataArray) {
+    const tempArray = this.data.dataArray.concat(dataArray);
+    this.setData({
+      dataArray: tempArray
+    });
+  },
+
+  getCurrentStart() {
+    return this.data.dataArray.length;
+  },
+
+  setTotal(total) {
+    this.data.total = total;
+    if (total == 0) {
+      this.setData({
+        noneResult: true
+      });
+    }
+  },
+
+  hasMore() {
+    if (this.data.dataArray.length >= this.data.total) {
+      this.setData({
+        hasMore: false
+      });
+      return false;
+    } else {
+      this.setData({
+        hasMore: true
+      });
+      return true;
+    }
+  },
+
+  initialize() {
+    this.setData({
+      dataArray: [],
+      noneResult: false,
+      loading: false
+    });
+    this.data.total = null;
+  },
+
+  isLocked() {
+    return this.data.loading ? true : false;
+  },
+
+  locked() {
+    this.setData({
+      loading: true
+    });
+  },
+
+  unLocked() {
+    this.setData({
+      loading: false
+    });
+  },
 
 
   /**
@@ -242,53 +293,40 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function() {
-    // 在当前页面显示导航条加载动画
-    wx.showNavigationBarLoading();
-    // 搜索电影
-    this.searchMovie(this.data.searchText);
+
+    const td = this.data;
+    if (!td.searchText) {
+      return;
+    }
+    if (this.isLocked()) {
+      return;
+    }
+
+    if (this.hasMore()) {
+      this.locked();
+      searchModel.search(td.searchText, this.getCurrentStart())
+        .then(res => {
+          this.setMoreData(res.subjects);
+          this.unLocked();
+        }, () => {
+          this.unLocked();
+        });
+    }
+
   },
 
-  onPageScroll: function(e) { // 获取滚动条当前位置
-    let scrollTop = e.scrollTop;
-    let that = this;
-    wx.getSystemInfo({
-      success: function(res) {
-        if (scrollTop > res.windowHeight - 160) {
-          that.setData({
-            goTopFlag: true
-          });
-        } else {
-          that.setData({
-            goTopFlag: false
-          });
-        }
-      }
-    });
+/**
+ * 获取滚动高度
+ */
+  onPageScroll(e) {
+    const scrollTop = e.scrollTop;
+    const flag = scrollTop > 320 ? true : false;
+      this.setData({
+        goTopFlag: flag
+      });
   },
 
 
-  // goTop: function(e) { // 一键回到顶部
-  //   if (wx.pageScrollTo) {
-  //     wx.pageScrollTo({
-  //       scrollTop: 0
-  //     })
-  //   } else {
-  //     wx.showModal({
-  //       title: '提示',
-  //       content: '当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试。'
-  //     })
-  //   }
-  // },
-
-  /**
-   * 跳转到详情页面
-   */
-  onMovieTap(event) {
-    let movieId = event.currentTarget.dataset.movieid;
-    wx.navigateTo({
-      url: '/pages/movie-detail/movie-detail?id=' + movieId
-    })
-  },
 
   /**
    * 用户点击右上角分享

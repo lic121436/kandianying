@@ -1,5 +1,3 @@
-<!--pages/search/search.wxml-->
-<import src="/common/list/list.wxml" />
 
 <view class="container">
   <view class="panel">
@@ -36,18 +34,19 @@
       </block>
       <block wx:else>
         <view class="title">最近搜索</view>
-        <view class="clear-history" bindtap="clearHistory" wx:if="{{recentSearchLiist.length > 0}}"><text class="iconfont icon-shanchu"></text>清除最近搜索</view>
+        <view class="clear-history" bindtap="clearHistory" wx:if="{{recentSearchLiist.length > 0}}">
+          <text class="iconfont icon-shanchu"></text>清除最近搜索</view>
       </block>
     </view>
 
     <!-- 搜索历史  -->
     <view class="search-history" wx:if="{{!searchFlag}}" bindtap="tapHistorySearch">
-      <text class="btn-history" wx:for="{{recentSearchLiist}}" data-search="{{item}}">{{item}}</text>
+      <text class="btn-history" wx:for="{{recentSearchLiist}}" data-search="{{item}}" wx:key="index">{{item}}</text>
     </view>
   </view>
 
   <!-- 无搜索结果  -->
-  <view class="search-tip-wrapper mt30" wx:if="{{noSearchFalse}}">
+  <view class="search-tip-wrapper mt30" wx:if="{{noneResult}}">
     <view class="list-title">无搜索结果，建议做如下检查或尝试</view>
     <view class="list-item">1 检查搜索词是否存在拼写或语法错误</view>
     <view class="list-item">2 尝试更换到其他类搜索词</view>
@@ -56,17 +55,16 @@
 
   <!--  搜索列表  -->
   <view class="list-wrapper mt30" wx:if="{{searchFlag}}">
-    <block wx:for="{{list}}">
-      <template is="movieList" data="{{...item}}" />
+    <block wx:for="{{dataArray}}" wx:key="index">
+      <l-list dataItem="{{item}}" />
     </block>
   </view>
 
+  <l-loading class="loading mv30"  wx:if="{{loading}}" />
+
+  <l-none  title="没有更多了" wx:if="{{!hasMore && !noneResult}}" />
+
 </view>
-
-
-<!-- <view class="go-top" bindtap='goTop' wx:if="{{goTopFlag}}">
-  <text class="iconfont icon-tubiao02"></text>
-</view> -->
 
 <!-- 调用返回顶部组件  -->
 <l-gotop goTopFlag="{{goTopFlag}}" />

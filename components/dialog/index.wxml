@@ -1,0 +1,19 @@
+<!--components/dialog/index.wxml-->
+<view wx:if="{{dialogHidden}}">
+  <view class="layer-pop" wx:if="{{dialogHidden}}">
+    <view class="layer-content">
+      <view class="layer-content-header">{{title}}</view>
+      <view class="layer-content-body">
+        <slot name="content"></slot>
+      </view>
+    </view>
+    <view class="layer-button">
+      <slot name="button"></slot>
+      <!-- <button class="btn-cancel" bindtap="layerClose4">取消</button>
+      <button class="btn-young" bindtap="layerClose4">立即安装</button> -->
+    </view>
+  </view>
+  <!--  弹窗蒙板  -->
+  <view class="layer-mask" bindtap="cancleBtn"></view>
+</view>
+

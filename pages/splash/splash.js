@@ -1,6 +1,10 @@
 // pages/splash/splash.js
-const doubanRequset = require('../../utils/douban');
+// const doubanRequset = require('../../utils/douban');
 const app = getApp();
+import {
+  FindModel
+} from "../../models/find.js";
+const findModel = new FindModel();
 let timer = null;
 let changeNum = 0;
 Page({
@@ -40,7 +44,7 @@ Page({
     // this.getImage();
     this.findImgUrls();
 
-    this.countDown(9);
+    this.countDown(this.data.count);
 
     // setTimeout(() => {
     //   this.jumpIndex();
@@ -70,7 +74,7 @@ Page({
   // 获取即将上映展示图片
   findImgUrls() {
 
-    doubanRequset.find('coming_soon', 1, 3)
+    findModel.find('coming_soon', 1, 3)
       .then(res => {
         let list = res.subjects;
         let imgUrls = [];

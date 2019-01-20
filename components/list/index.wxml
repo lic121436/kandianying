@@ -1,0 +1,18 @@
+  <view class="movie-item" catchtap="onMovieTap" data-movieId="{{dataItem.id}}">
+    <image src="{{dataItem.images.small}}" mode="aspectFit" lazy-load="{{true}}"></image>
+    <view class="item-content">
+      <view class="title">{{dataItem.title}}</view>
+      <view class="sub-title">{{dataItem.title}}（{{dataItem.year}}）</view>
+      <view class="info">导演：
+        <block wx:for="{{dataItem.directors}}" wx:for-item="directors" wx:key="*this">
+          <text class="text">{{directors.name}}</text>
+        </block>
+      </view>
+      <view class="info">主演：
+        <block wx:for="{{dataItem.casts}}" wx:for-item="casts" wx:key="*this">
+          <text class="text">{{casts.name}}</text>
+        </block>
+      </view>
+    </view>
+    <view class="code">{{dataItem.rating.average}}</view>
+  </view>

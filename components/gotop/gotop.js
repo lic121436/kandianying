@@ -16,6 +16,13 @@ Component({
   },
 
   /**
+   * 在组件实例进入页面节点树时执行
+   */
+  attached() {
+
+  },
+
+  /**
    * 组件的方法列表
    */
   methods: {
@@ -40,7 +47,7 @@ Component({
     //   console.log(this.data.goTopFlag);
     // },
 
-    goTop: function (e) {  // 一键回到顶部
+    goTop: function(e) { // 一键回到顶部
       if (wx.pageScrollTo) {
         wx.pageScrollTo({
           scrollTop: 0
@@ -54,5 +61,3 @@ Component({
     },
   }
 })
-
-

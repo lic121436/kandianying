@@ -1,5 +1,8 @@
 {
   "usingComponents": {
-    "l-gotop": "/components/gotop/gotop"
+    "l-gotop": "/components/gotop/gotop",
+    "l-list": "/components/list/index",
+    "l-loading": "/components/loading/index",
+    "l-none": "/components/none/index"
   }
 }

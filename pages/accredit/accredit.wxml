@@ -3,9 +3,9 @@
   <view class="panel">
     <view class="header">
       <view class="logo">
-        <image src="/images/ewm.jpg"></image>
+        <image src="{{userImg}}"></image>
       </view>
-      <view class="title">电影查看</view>
+      <view class="title">{{userName}}</view>
     </view>
 
     <view class="text-wrapper">
@@ -18,7 +18,7 @@
         <navigator class="btn-info radius" open-type="switchTab" url="/pages/board/board">返回首页</navigator>
       </view>
       <view class="button-list">
-        <button class="btn-warning radius" open-type="getUserInfo">确定授权</button>
+        <button class="btn-warning radius" open-type="getUserInfo" bindgetuserinfo="onGotUserInfo" disabled="{{loginFlag}}">{{buttonText}}</button>
       </view>
     </view>
 

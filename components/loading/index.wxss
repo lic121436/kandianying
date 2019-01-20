@@ -1,0 +1,15 @@
+.loading { position:relative; left: 50%; margin: 30rpx 0 0 -15rpx;}
+.loading view{ display:block; width:15rpx;height:15rpx;border-radius:50%; background-color:#333; position:absolute;}
+.loading view:nth-child(1){top:25rpx;left:0;-webkit-animation:loading-3 1s ease 0s infinite;}
+.loading view:nth-child(2){top:17rpx;left:17rpx;-webkit-animation:loading-3 1s ease -0.12s infinite;}
+.loading view:nth-child(3){top:0rpx;left:25rpx;-webkit-animation:loading-3 1s ease -0.24s infinite;}
+.loading view:nth-child(4){top:-17rpx;left:17rpx;-webkit-animation:loading-3 1s ease -0.36s infinite;}
+.loading view:nth-child(5){top:-25rpx;left:0;-webkit-animation:loading-3 1s ease -0.48s infinite;}
+.loading view:nth-child(6){top:-17rpx;left:-17rpx;-webkit-animation:loading-3 1s ease -0.6s infinite;}
+.loading view:nth-child(7){top:0rpx;left:-25rpx;-webkit-animation:loading-3 1s ease -0.72s infinite;}
+.loading view:nth-child(8){top:17rpx;left:-17rpx;-webkit-animation:loading-3 1s ease -0.84s infinite;}
+
+@-webkit-keyframes loading-3{
+	50%{ transform:scale(0.4); opacity:.4;}
+	100%{ transform:scale(1); opacity:1;}
+	}

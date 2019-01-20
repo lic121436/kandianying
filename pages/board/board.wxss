@@ -42,7 +42,7 @@
 }
 
 .board navigator {
-  width:calc(100% - 105rpx);
+  width: 100%;
 }
 
 .board .board-item {
@@ -50,11 +50,11 @@
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
-    width: 100%;
     padding: 30rpx;
     margin: 10rpx 20rpx;
     border: 1px solid #eee;
     background: #eee;
+    border-radius: 2px;
       cursor: pointer;  
 }
 

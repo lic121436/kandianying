@@ -1,0 +1,42 @@
+.no-data {
+  width: 100%;
+  margin-top: 20rpx;
+}
+
+.no-data .no-data-title {
+  width: calc(100% / 2);
+  height: 100rpx;
+  margin: 0 auto;
+  padding: 0 20rpx;
+  line-height: 100rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #666;
+  overflow: hidden;
+}
+
+.no-data .no-data-title .no-data-tips {
+  display: inline-block;
+  position: relative;
+  line-height: 50rpx;
+  vertical-align: middle;
+}
+
+.no-data .no-data-title .no-data-tips::before, .no-data .no-data-title .no-data-tips::after {
+  position: absolute;
+  content: "";
+  top: 50%;
+  width: 9999px;
+  height: 1px;
+  background-color: #e5e5e5;
+}
+
+.no-data .no-data-title .no-data-tips::before {
+  right: 100%;
+  margin-right: 30rpx;
+}
+
+.no-data .no-data-title .no-data-tips::after {
+  left: 100%;
+  margin-left: 30rpx;
+}

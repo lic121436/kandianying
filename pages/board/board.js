@@ -1,5 +1,8 @@
 // pages/board/board.js
-const douban = require("../../utils/douban.js");
+import {
+  FindModel
+} from "../../models/find.js";
+const findModel = new FindModel();
 Page({
 
   /**
@@ -45,7 +48,7 @@ Page({
   // 获取展示图片
   findImgUrls() {
 
-    douban.find('in_theaters', 1, 3)
+    findModel.find('in_theaters', 1, 3)
       .then(res => {
         let list = res.subjects;
         let imgUrls = [];
