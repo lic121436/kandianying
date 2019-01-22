@@ -4,7 +4,7 @@ import {
   FindModel
 } from "../../models/find.js";
 const findModel = new FindModel();
-
+const util = require("../../utils/util.js");
 Page({
   /**
    * 页面的初始数据
@@ -53,20 +53,39 @@ Page({
 
   getMovesList(type) {
     // 数据加载
-    findModel.find(type)
-      .then(res => {
-        // console.log(res);
-        if (type == "us_box" || type == "weekly") {
-          this._setMore(this.setNewArray(res.subjects));
-          this._setTotal(this.setNewArray(res.subjects).length);
-        } else if (type == "new_movies") {
-          this._setMore(res.subjects);
-          this._setTotal(res.subjects.length);
-        } else {
-          this._setMore(res.subjects);
-          this._setTotal(res.total);
-        }
-      });
+    const listName = `list${type}_0`;
+    const listData = util.getStorage(listName);
+    if (!listData) {
+      findModel.find(type)
+        .then(res => {
+          // console.log(res);
+          if (type == "us_box" || type == "weekly") {
+            this._setMore(this.setNewArray(res.subjects));
+            this._setTotal(this.setNewArray(res.subjects).length);
+            util.setStorage(listName, {
+              data: this.setNewArray(res.subjects),
+              total: this.setNewArray(res.subjects).length
+            }, 30 * 60);
+          } else if (type == "new_movies") {
+            this._setMore(res.subjects);
+            this._setTotal(res.subjects.length);
+            util.setStorage(listName, {
+              data: res.subjects,
+              total: res.subjects.length
+            }, 30 * 60);
+          } else {
+            this._setMore(res.subjects);
+            this._setTotal(res.total);
+            util.setStorage(listName, {
+              data: res.subjects,
+              total: res.total
+            }, 30 * 60);
+          }
+        });
+    } else {
+      this._setMore(listData.data);
+      this._setTotal(listData.total);
+    }
   },
 
   _setMore(dataArray) {
@@ -159,20 +178,33 @@ Page({
 
   loadData: function(type, start) {
     // console.log(type);
+    const listName = `list${type}_${start}`;
+    const listData = util.getStorage(listName);
     if (this._isLocked()) {
       return;
     }
 
     if (this._hasMore()) {
       this._locked();
-      findModel.find(type, start)
-        .then(res => {
-          this._setMore(res.subjects);
-          this._setTotal(res.total);
-          this._unLocked();
-        }, () => {
-          this._unLocked();
-        });
+      if (!listData) {
+        findModel.find(type, start)
+          .then(res => {
+            this._setMore(res.subjects);
+            this._setTotal(res.total);
+            this._unLocked();
+            util.setStorage(listName, {
+              data: res.subjects,
+              total: res.total
+            }, 30 * 60);
+          }, () => {
+            this._unLocked();
+          });
+      } else {
+        this._setMore(listData.data);
+        this._setTotal(listData.total);
+        this._unLocked();
+      }
+
     }
 
 

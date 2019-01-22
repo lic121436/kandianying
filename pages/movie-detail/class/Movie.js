@@ -7,10 +7,15 @@ class Movie {
   }
 
   // 定义层级变量函数 接收一个回调cb
+  // const movieDetail = utils.getStorage();
+
+
   getMovieData(cb) {
     this.cb = cb
     utils.http(this.url, this.processDoubanData.bind(this));   // .bind(this) 绑定this
   }
+
+
 
   // 数据处理
   processDoubanData(data) {
@@ -54,6 +59,17 @@ class Movie {
     this.cb(movie);                                         // 将数据返回出去
   }
 
+}
+
+/**
+ * 分割传入的url并将最后的id返回
+ */
+function splitUrlReturnLast(url){
+  let arr = [];
+  if (url) {
+     arr = url.split("/");
+  }
+  return arr[arr.length - 1];
 }
 
 export {Movie}

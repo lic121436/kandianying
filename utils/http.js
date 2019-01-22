@@ -3,7 +3,8 @@ import {
 } from '../config.js';
 
 const tips = {
-  1: '抱歉，出现了一个错误'
+  1: '抱歉，出现了一个错误',
+  rabort: "网络请求失败"
 }
 
 class HTTP {
@@ -45,6 +46,12 @@ class HTTP {
       fail: (err) => {
         reject();
         this._show_error(1);
+        console.log("网络请求失败....：" + err.errMsg);
+      },
+      complete: res => {
+        if (res.errMsg == "request:fail timeout") {
+          this._show_error("rabort");
+        }
       }
     })
   }

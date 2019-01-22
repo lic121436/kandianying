@@ -30,7 +30,7 @@ function convertToStarsArray(stars) {
 
 // 数据请求
 function http(url, callBack) {
-  var that = this;
+  
   wx.request({
     url: url,
     data: {},
@@ -69,10 +69,55 @@ function convertToCastInfos(casts) {
   return castsArray;
 }
 
+const dtime = '_deadtime';
+const setStorage = (k, v, t) => {
+  wx.setStorageSync(k, v);
+  const seconds = parseInt(t);
+  if (seconds > 0) {
+    let timestamp = Date.parse(new Date());
+    timestamp = timestamp / 1000 + seconds;
+    wx.setStorageSync(k + dtime, timestamp + "");
+  } else {
+    wx.removeStorageSync(k + dtime);
+  }
+}
+
+const getStorage = (k, def) => {
+  const deadtime = parseInt(wx.getStorageSync(k + dtime));
+  if (deadtime) {
+    if (parseInt(deadtime) < Date.parse(new Date()) / 1000) {
+      if (def) {
+        return def;
+      } else {
+        return;
+      }
+    }
+  }
+  const res = wx.getStorageSync(k);
+  if (res) {
+    return res;
+  } else {
+    return def;
+  }
+}
+
+const removeStorage = (k) => {
+  wx.removeStorageSync(k);
+  wx.removeStorageSync(k + dtime);
+}
+
+const clearStorage = () => {
+  wx.clearStorageSync();
+}
+
 module.exports = {
   formatTime: formatTime,
   convertToStarsArray: convertToStarsArray,
   http: http,
   convertToCastString: convertToCastString,
-  convertToCastInfos: convertToCastInfos
+  convertToCastInfos: convertToCastInfos,
+  setStorage: setStorage,
+  getStorage: getStorage,
+  removeStorage: removeStorage,
+  clearStorage: clearStorage
 }

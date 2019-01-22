@@ -1,7 +1,7 @@
 <!--pages/splash/splash.wxml-->
 <view class='slide'>
   <swiper indicator-dots="true" autoplay="true" interval="3000" duration="500" indicator-color="#fff" indicator-active-color="#02b1f7">
-    <block wx:for="{{imgUrls}}">
+    <block wx:for="{{imgUrls}}" wx:key="index">
       <swiper-item>
         <image src="{{item}}" class="slide-image"  mode="aspectFill" lazy-load="{{true}}"/>
         <button class="btn" bindtap="jumpIndex"> 立即体验 </button>

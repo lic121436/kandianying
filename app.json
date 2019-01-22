@@ -1,5 +1,5 @@
 {
-  "pages":[
+  "pages": [
     "pages/splash/splash",
     "pages/board/board",
     "pages/search/search",
@@ -9,15 +9,15 @@
     "pages/list/list",
     "pages/accredit/accredit"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#354951",
     "navigationBarTitleText": "电影查看",
-    "navigationBarTextStyle":"white"
-  }, 
+    "navigationBarTextStyle": "white"
+  },
   "tabBar": {
     "color": "#666",
-    "selectedColor": "#000", 
+    "selectedColor": "#000",
     "backgroundColor": "#fff",
     "borderStyle": "black",
     "position": "bottom",
@@ -47,5 +47,8 @@
         "selectedIconPath": "images/profile-actived.png"
       }
     ]
+  },
+  "networkTimeout": {
+    "request": 10000
   }
 }

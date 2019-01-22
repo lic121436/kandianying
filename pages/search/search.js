@@ -41,6 +41,43 @@ Page({
   },
 
   /**
+   * 长按删除
+   */
+  delHistory(e){
+    const searchText = e.currentTarget.dataset.search;
+    const searchArr = wx.getStorageSync("recentSearchLiist");
+    const index = searchArr.indexOf(searchText);
+    wx.showModal({
+      title: '搜索记录删除提示',
+      content: '您确定要删除该搜索记录',
+      success: res => {
+        if(res.confirm){
+          searchArr.splice(index, 1);
+          wx.setStorageSync("recentSearchLiist", searchArr);
+          this.setData({
+            recentSearchLiist: searchArr
+          });
+          this._showToast("success", "删除成功!");
+        }
+        if(res.cancel){
+          this._showToast("none", "取消删除!");
+        }
+      }
+    });
+
+  },
+
+  /**
+   *  showToast提示
+   */
+  _showToast(iconType, title){
+    wx.showToast({
+      title: title,
+      icon: iconType
+    });
+  },
+
+  /**
    * 搜索框触发
    */
   searchInputFocus(e) {

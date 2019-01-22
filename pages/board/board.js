@@ -3,6 +3,7 @@ import {
   FindModel
 } from "../../models/find.js";
 const findModel = new FindModel();
+const util = require("../../utils/util.js");
 Page({
 
   /**
@@ -44,23 +45,39 @@ Page({
     this.findImgUrls();
   },
 
+  /**
+   * 点击幻灯片
+   */
+  onClickBannerImg(e){
+    let movieId = e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: `/pages/movie-detail/movie-detail?id=${movieId}`
+    })
+  },
 
   // 获取展示图片
   findImgUrls() {
-
+    const bdBannerImgs = util.getStorage("bdBannerImgs");
+    if (bdBannerImgs) {
+      this.setData({
+        imgUrls: bdBannerImgs
+      });
+    } else {
     findModel.find('in_theaters', 1, 3)
       .then(res => {
         let list = res.subjects;
         let imgUrls = [];
-        list.forEach((item, index) => {
-          if (index < 3) {
-            imgUrls.push(item.images.large);
-          }
-        });
+        // list.forEach((item, index) => {
+        //   if (index < 3) {
+        //     imgUrls.push(item.images.large);
+        //   }
+        // });
         this.setData({
-          imgUrls
+          imgUrls: list
         })
+        util.setStorage("bdBannerImgs", list, 60 * 60);
       })
+    }
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

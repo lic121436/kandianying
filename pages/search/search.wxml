@@ -33,7 +33,7 @@
         <view class="title">搜索结果</view>
       </block>
       <block wx:else>
-        <view class="title">最近搜索</view>
+        <view class="title">最近搜索(长按可删除)</view>
         <view class="clear-history" bindtap="clearHistory" wx:if="{{recentSearchLiist.length > 0}}">
           <text class="iconfont icon-shanchu"></text>清除最近搜索</view>
       </block>
@@ -41,7 +41,7 @@
 
     <!-- 搜索历史  -->
     <view class="search-history" wx:if="{{!searchFlag}}" bindtap="tapHistorySearch">
-      <text class="btn-history" wx:for="{{recentSearchLiist}}" data-search="{{item}}" wx:key="index">{{item}}</text>
+      <text class="btn-history" bindlongpress="delHistory" wx:for="{{recentSearchLiist}}" data-search="{{item}}" wx:key="index">{{item}}</text>
     </view>
   </view>
 

@@ -5,6 +5,7 @@ import {
   FindModel
 } from "../../models/find.js";
 const findModel = new FindModel();
+const util = require("../../utils/util.js");
 let timer = null;
 let changeNum = 0;
 Page({
@@ -73,6 +74,12 @@ Page({
 
   // 获取即将上映展示图片
   findImgUrls() {
+    const indexImgs = util.getStorage("indexImgs");
+    if (indexImgs) {
+      this.setData({
+        imgUrls: indexImgs
+      });
+    } else {
 
     findModel.find('coming_soon', 1, 3)
       .then(res => {
@@ -85,8 +92,10 @@ Page({
         });
         this.setData({
           imgUrls
-        })
+        });
+        util.setStorage("indexImgs", imgUrls, 60*60);
       })
+    }
   },
 
 

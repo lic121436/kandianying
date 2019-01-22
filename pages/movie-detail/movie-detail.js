@@ -4,7 +4,7 @@ const douban = require("../../utils/douban.js");
 import {
   Movie
 } from 'class/Movie.js';
-
+const util = require("../../utils/util.js");
 Page({
 
   /**
@@ -21,8 +21,6 @@ Page({
     let movieId = options.id;
 
     let url = getApp().globalData.doubanBase + "/v2/movie/subject/" + movieId;
-
-
 
     var movie = new Movie(url);
     movie.getMovieData((movie) => {

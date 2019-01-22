@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    ewmUrl: "http://plpyw6p37.bkt.clouddn.com/ewm.jpg"
   },
 
   /**
@@ -14,7 +14,18 @@ Page({
   onLoad: function (options) {
   
   },
+  /**
+   * 图片预览
+   */
 
+  previewImage: function (e) {
+    let newArr = [];
+    newArr.push(this.data.ewmUrl);
+    wx.previewImage({
+      current: e.currentTarget.id, // 当前显示图片的http链接
+      urls: newArr // 需要预览的图片http链接列表
+    })
+  },
 
 
   /**
