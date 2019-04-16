@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    ewmUrl: "http://plpyw6p37.bkt.clouddn.com/ewm.jpg"
+    ewmUrl: "/images/ewm.jpg"
   },
 
   /**
